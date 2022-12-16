@@ -1,0 +1,6 @@
+#ifndef WISHLIST_H_INCLUDED
+#define WISHLIST_H_INCLUDED
+
+
+
+#endif // WISHLIST_H_INCLUDED
