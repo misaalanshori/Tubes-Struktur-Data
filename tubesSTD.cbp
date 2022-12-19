@@ -34,17 +34,11 @@
 		</Compiler>
 		<Unit filename="header.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="productList.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="productList.cpp" />
 		<Unit filename="productList.h" />
-		<Unit filename="userList.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="userList.cpp" />
 		<Unit filename="userList.h" />
-		<Unit filename="wishList.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="wishList.cpp" />
 		<Unit filename="wishList.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

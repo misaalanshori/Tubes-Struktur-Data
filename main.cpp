@@ -1,6 +1,7 @@
-#include <iostream>
-
-using namespace std;
+#include "header.h"
+#include "userList.h"
+#include "wishList.h"
+#include "productList.h"
 
 int main()
 {
