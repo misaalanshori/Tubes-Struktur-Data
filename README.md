@@ -13,6 +13,7 @@ Berikut adalah spesifikasi untuk Multi Linked List M-N yang akan kami gunakan
 
 ### userList
 User List akan menyimpan data semua orang yang menggunakan perangkat lunak ini. Data yang disimpan adalah:
+- UserID
 - Nama
 - Password
 - wishList (pointer to wishlist)
@@ -23,12 +24,13 @@ Wish List akan menyimpan daftar relasi dari pengguna ke elemen pada Product List
 
 ### productList
 Product List akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
+- ProductID
 - Nama Produk
 - Harga Produk  
 
 ## Fungsionalitas
 - Insert data parent dari depan/belakang (5)
-  - insertUserLast
+  - insertUserFirst
 - Show all data parent (5)
   - showUsers
 - Menghapus data parent beserta relasinya (15)
@@ -50,3 +52,23 @@ Product List akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
 - Menghitung jumlah data child dari parent tertentu (5)
   - countWish
 - Main program (10)
+
+## Struktur Menu
+- Login
+  - Input Username
+  - Input Password
+  - Login
+    - Show Products
+      - Display Product List ("{productId} - {productName} ({hargaProduk})")
+    - Add Wishlist
+      - Input Product ID
+    - Show Users
+      - Display User List
+    - Buy Wish
+      - Input User ID
+        - Display Wishlist Product Lists ("{productId} - {productName} ({hargaProduk})")
+        - Input Product ID
+- Register
+  - Input Username
+  - Input Password
+  - Register
