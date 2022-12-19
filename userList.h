@@ -3,7 +3,6 @@
 
 struct userData {
    string username,password;
-   int userID;
 } ;
 
 typedef struct elmUser *adr_UL;
@@ -25,6 +24,6 @@ adr_UL createElemenUserList(infotype X);
 void insertUserFirst( ListUser &L, adr_UL &P);
 void showUsers(ListUser L);
 void deleteUser(ListUser &L, adr_UL &P);
-adr_UL findUser(ListUser L, string username, int userID);
+adr_UL findUser(ListUser L, string username);
 
 #endif // USERLIST_H_INCLUDED
