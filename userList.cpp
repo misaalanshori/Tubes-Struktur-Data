@@ -6,7 +6,7 @@ void createListUser(ListUser &L){
 };
 
 adr_UL createElemenUserList(infotype X){
-    adr_UL P = new ElmUser;
+    adr_UL P = new elmUser;
     info(P) = X;
     next(P) = NULL;
     return P;
@@ -46,5 +46,7 @@ void showUsers(ListUser L){
     }
 };
 adr_UL findUser(ListUser L, string username){
-
+    
+    
+    return
 };

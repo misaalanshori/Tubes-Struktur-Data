@@ -11,7 +11,7 @@ typedef struct elmUser *adr_UL;
 typedef struct userData infotype;
 typedef struct elmProduct *adr_PL;
 
-struct ElmUser{
+struct elmUser{
     infotype info;
     adr_UL next;
     adr_PL wishList;
