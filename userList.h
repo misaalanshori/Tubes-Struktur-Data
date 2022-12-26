@@ -1,20 +1,18 @@
 #ifndef USERLIST_H_INCLUDED
 #define USERLIST_H_INCLUDED
 
-
-
 struct userData {
    string username,password;
 } ;
 
 typedef struct elmUser *adr_UL;
 typedef struct userData infotype;
-typedef struct elmProduct *adr_PL;
+typedef struct elmWishList *adr_WL;
 
 struct elmUser{
     infotype info;
     adr_UL next;
-    adr_PL wishList;
+    adr_WL wishList;
 };
 
 struct ListUser {

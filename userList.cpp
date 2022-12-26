@@ -24,8 +24,17 @@ void insertUserFirst( ListUser &L, adr_UL &P){
     }
 };
 
-void deleteUser(ListUser &L, adr_UL &P){
+void deleteUser(ListUser &L, adr_UL &P, string username){
+    adr_UL a = first(L);
+    adr_UL prec = first(L);
 
+    while  (next(a) != NULL && info(next(a)).username != username){
+        prec = a;
+        a = next(a);
+    }
+    P = next(prec);
+    next(prec) = next(P);
+    next(P) = NULL;
 };
 
 void showUsers(ListUser L){
@@ -46,7 +55,15 @@ void showUsers(ListUser L){
     }
 };
 adr_UL findUser(ListUser L, string username){
-    
-    
-    return
+    adr_UL a = first(L);
+
+    if (a == NULL){
+        cout<<"List kosong."<<endl;
+        return NULL;
+    } else {
+        while ((info(a).username != username) && (a != NULL)){
+            a = next(a);
+        }
+        return a;
+    }
 };
