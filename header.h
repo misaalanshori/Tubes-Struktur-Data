@@ -5,6 +5,7 @@
 using namespace std;
 
 #define next(x) (x->next)
+#define prev(x) (x->prev)
 #define info(x) (x->info)
 #define first(x) (x.first)
 #define userWish(x) (x->wishList)
