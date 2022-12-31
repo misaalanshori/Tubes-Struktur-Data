@@ -12,7 +12,7 @@ adr_UL createElemenUserList(infotype X){
     return P;
 };
 
-void insertUserFirst( ListUser &L, adr_UL &P){
+void insertUserFirst( ListUser &L, adr_UL P){
     adr_UL q;
 
     if (first(L) == NULL){
@@ -38,8 +38,8 @@ void deleteUser(ListUser &L, adr_UL &P, string username){
 };
 
 void showUsers(ListUser L){
-      adr_UL P = first(L);
-      int i = 0;
+    adr_UL P = first(L);
+    int i = 1;
 
     if (first(L) != NULL){
         while (P != NULL){
