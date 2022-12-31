@@ -33,24 +33,35 @@ void showProducts(ListProduct L) {
         cout << "Produk Kosong!" << endl;
     } else {
         while (elm != NULL) {
-            elm = next(elm);
             cout << info(elm).productID << ". " << info(elm).nama << " (Rp" << info(elm).harga << ")" << endl;
+            elm = next(elm);
         }
     }
 }
 
 
 void deleteProduct(ListProduct &L, adr_PL &P, int productID){
-    adr_PL a = first(L);
-    adr_PL prec = first(L);
+    if (info(first(L)).productID == productID) {
+        P = first(L);
+        first(L) = next(P);
+        next(P) = NULL;
+    } else {
+        adr_PL a = first(L);
+        adr_PL prec = first(L);
 
-    while  (next(a) != NULL && info(next(a)).productID != productID){
-        prec = a;
-        a = next(a);
+        while  (next(a) != NULL && info(a).productID != productID){
+            prec = a;
+            a = next(a);
+        }
+        if (a != NULL) {
+            P = next(prec);
+            next(prec) = next(P);
+            next(P) = NULL;
+        } else {
+            P = NULL;
+        }
+        
     }
-    P = next(prec);
-    next(prec) = next(P);
-    next(P) = NULL;
 };
 
 
