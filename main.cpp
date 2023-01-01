@@ -53,6 +53,7 @@ void mainMenu(adr_UL user) {
     int prodPrice;
 
     string username;
+    string tempInput;
 
     adr_PL tempP;
     adr_UL tempU;
@@ -70,6 +71,7 @@ void mainMenu(adr_UL user) {
         << "6. Show Users" << endl
         << "7. Buy Wish" << endl 
         << endl
+        << "99. Delete User" << endl
         << "0. Log Out" << endl
         << "#> ";
         cin >> userInput;
@@ -176,16 +178,29 @@ void mainMenu(adr_UL user) {
                     } else {
                         deleteWish(tempU, tempW);
                         cout << "You have purchased " << info(wishProduct(tempW)).nama << " for " << info(tempU).username << endl;
-                        free(tempW);
+                        delete tempW;
                     }
                 }
                 pause();
             }
-            
-            
             break;
         
-
+        case 99:
+            cout << "# Delete User " << info(user).username << endl;
+            cout << "Are you sure? (y/n) ";
+            cin >> tempInput;
+            if (tempInput == "y") {
+                while (userWish(user) != NULL) {
+                    tempW = userWish(user);
+                    deleteWish(user, tempW);
+                    delete tempW;
+                }
+                deleteUser(Users, tempU, info(user).username);
+                cout << "Deleted user " << info(tempU).username << endl;
+                delete tempU;
+            }
+            userInput = 0;
+            
         case 0:
             cout << "Logged Out!" << endl;
         default:
