@@ -28,7 +28,7 @@ void insertUserFirst( ListUser &L, adr_UL P){
 };
 
 void deleteUser(ListUser &L, adr_UL &P, string username) {
-
+    P = NULL;
     if (info(first(L)).username == username) {
         P = first(L);
         first(L) = next(P);
@@ -50,7 +50,14 @@ void deleteUser(ListUser &L, adr_UL &P, string username) {
         }
         
     }
-
+    if (P != NULL) {
+        adr_WL tempW;
+        while (userWish(P) != NULL) {
+            tempW = userWish(P);
+            deleteWish(P, tempW);
+            delete tempW;
+        }
+    }
     
 };
 

@@ -188,11 +188,6 @@ void mainMenu(adr_UL user) {
             cout << "Are you sure? (y/n) ";
             cin >> tempInput;
             if (tempInput == "y") {
-                while (userWish(user) != NULL) {
-                    tempW = userWish(user);
-                    deleteWish(user, tempW);
-                    delete tempW;
-                }
                 deleteUser(Users, tempU, info(user).username);
                 cout << "Deleted user " << info(tempU).username << endl;
                 delete tempU;
