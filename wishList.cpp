@@ -33,7 +33,6 @@ void showWishList(adr_UL  L) {
         cout << "Wishlist Kosong!";
     } else {
         do {
-            
             cout 
             << info(wishProduct(elm)).productID << ". " 
             << info(wishProduct(elm)).nama 
@@ -44,11 +43,16 @@ void showWishList(adr_UL  L) {
 }
 
 void deleteWish(adr_UL  L, adr_WL P) {
-    prev(next(P)) = prev(P);
-    next(prev(P)) = next(P);
-    if (P == userWish(L)) {
-        userWish(L) = next(P);
+    if (next(P) == P && prev(P) == P) {
+        userWish(L) = NULL;
+    } else {
+        prev(next(P)) = prev(P);
+        next(prev(P)) = next(P);
+        if (P == userWish(L)) {
+            userWish(L) = next(P);
+        }
     }
+    
 }
 
 adr_WL findWish(adr_UL  L, int productID) {
@@ -58,9 +62,12 @@ adr_WL findWish(adr_UL  L, int productID) {
         cout<<"List kosong."<<endl;
         return NULL;
     } else {
-        while ((a != NULL) && (info(wishProduct(a)).productID != productID)){
+        do {
+            if (info(wishProduct(a)).productID == productID) {
+                return a;
+            }
             a = next(a);
-        }
-        return a;
+        } while (a != userWish(L));
+        return NULL;
     }
 }

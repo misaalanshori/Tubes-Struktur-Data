@@ -6,6 +6,12 @@
 ListUser Users;
 ListProduct Products;
 
+void pause() {
+    cout << endl << "Press Enter to continue!";
+    cin.ignore();
+    cin.ignore();
+}
+
 adr_UL userLogin() {
     string username, password;
     cout << "Login Akun" << endl;
@@ -41,25 +47,144 @@ bool userRegister() {
 
 void mainMenu(adr_UL user) {
     int userInput = -1;
+
+    int productID;
+    string prodName;
+    int prodPrice;
+
+    string username;
+
+    adr_PL tempP;
+    adr_UL tempU;
+    adr_WL tempW;
     while (userInput != 0) {
         cout << endl
         << "-==Wishlist " << info(user).username <<"==-" << endl
         << "1. Your Wishlist" << endl
         << "2. Add Wishlist" << endl
+        << "--Products--" << endl
         << "3. Show Products" << endl
-        << "4. Show Users" << endl
-        << "5. Buy Wish" << endl
+        << "4. Input New Product" << endl
+        << "5. Remove Product" << endl
+        << "--Users--" << endl
+        << "6. Show Users" << endl
+        << "7. Buy Wish" << endl 
+        << endl
         << "0. Log Out" << endl
         << "#> ";
         cin >> userInput;
         switch (userInput) {
         case 1:
-
+            cout << "# Your Wishlist" << endl;
+            showWishList(user);
+            cout << endl;
+            pause();
             break;
 
         case 2:
-
+            cout << "# Add Wishlist" << endl;
+            cout << "Input Product ID: ";
+            cin >> productID;
+            tempP = findProduct(Products, productID);
+            cout << "#2";
+            if (findWish(user, productID)) {
+                cout << "Product is already in Wishlist!" << endl;
+            } else {
+                cout << "#1";
+                if (tempP) {
+                    insertWFirst(user, createElemenWL(tempP));
+                    cout << "Added " << info(tempP).nama << " to your wishlist!" << endl;
+                } else {
+                    cout << "Product Not Found!" << endl;
+                }
+            }
+            
+            pause();
             break;
+        
+        case 3:
+            cout << "# Available Products" << endl;
+            showProducts(Products);
+            pause();
+            break;
+
+        case 4:
+            cout << "# Add New Products" << endl;
+            cout << "Input Product ID: ";
+            cin >> productID;
+            if (findProduct(Products, productID)) {
+                cout << "Product ID exists!";
+                break;
+            }
+            cout << "Input Product Name: ";
+            cin >> prodName;
+            cout << "Input Product Price: ";
+            cin >> prodPrice;
+            insertProductLast(Products, createElemenProductList({productID, prodName, prodPrice}));
+            cout << "Added " << prodName << " as item id " << productID << endl;
+            pause();
+            break;
+
+        case 5:
+            cout 
+            << "# Delete a Product" << endl
+            << "(Warning: Will delete product from all wishlist!)" << endl
+            << "Input Product ID: ";
+            cin >> productID;
+            tempP = findProduct(Products, productID);
+            if (tempP == NULL) {
+                cout << "Product not found!" << endl;
+            } else {
+                tempU = first(Users);
+                while (tempU != NULL) {
+                    tempW = findWish(tempU, productID);
+                    if (tempW != NULL) {
+                        deleteWish(tempU, tempW);
+                    }
+                    tempU = next(tempU);
+                }
+                deleteProduct(Products, tempP, productID);
+                cout << "Deleted the product " << info(tempP).nama << endl;
+                free(tempP);
+            }
+            break;
+
+        case 6:
+            cout << "# Registered Users" << endl;
+            showUsers(Users);
+            pause();
+            break;
+
+        case 7:
+            cout << "# Buy a Gift!" << endl;
+            cout << "Input Username: ";
+            cin >> username;
+            tempU = findUser(Users, username);
+            if (tempU == NULL) {
+                cout << "User not found!" << endl;
+            } else {
+                showWishList(tempU);
+                cout << "Input Product ID to buy: ";
+                cin >> productID;
+                tempP = findProduct(Products, productID);
+                if (tempP == NULL) {
+                    cout << "Product not found!" << endl;
+                } else {
+                    tempW = findWish(tempU, productID);
+                    if (tempW == NULL) {
+                        cout << "Product not in user Wishlist!" << endl;
+                    } else {
+                        deleteWish(tempU, tempW);
+                        cout << "You have purchased " << info(wishProduct(tempW)).nama << " for " << info(tempU).username << endl;
+                        free(tempW);
+                    }
+                }
+                pause();
+            }
+            
+            
+            break;
+        
 
         case 0:
             cout << "Logged Out!" << endl;
@@ -86,18 +211,18 @@ int main()
         case 1:
             user = userLogin();
             if (user) {
-                cout << "Berhasil Login!" << endl;
+                cout << "Login Successfull!" << endl;
                 mainMenu(user);
             } else {
-                cout << "Login Gagal!" << endl;
+                cout << "Login Failed!" << endl;
             }
             break;
 
         case 2:
             if (userRegister()) {
-                cout << "Akun ditambahkan!" << endl;
+                cout << "Account Added!" << endl;
             } else {
-                cout << "Akun sudah ada!" << endl;
+                cout << "Account Exists!" << endl;
             }
             break;
 

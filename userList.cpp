@@ -1,5 +1,6 @@
 #include "header.h"
 #include "userList.h"
+#include "wishList.h"
 
 void createListUser(ListUser &L){
     first(L) = NULL;
@@ -52,23 +53,35 @@ void deleteUser(ListUser &L, adr_UL &P, string username) {
     
 };
 
+int userWishCount(adr_UL p) {
+    int count = 0;
+    adr_WL wish = userWish(p);
+    if (wish != NULL) {
+        do {
+            count++;
+            wish = next(wish);
+        } while (wish != userWish(p));
+    }
+    return count;
+}
+
 void showUsers(ListUser L){
     adr_UL P = first(L);
     int i = 1;
 
     if (first(L) != NULL){
         while (P != NULL){
-            cout << i << ".";
-            cout << info(P).username << " ; ";
-            cout << info(P).password << endl;
+            cout << i << ". ";
+            cout << info(P).username;
+            cout << " (" << userWishCount(P) << " Wishes)" << endl;
             P = next(P);
             i++;
         }
-        cout<<endl;
     }else{
         cout<<"List kosong."<<endl;
     }
 };
+
 adr_UL findUser(ListUser L, string username){
     adr_UL a = first(L);
 

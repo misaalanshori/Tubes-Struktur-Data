@@ -63,6 +63,8 @@ Product List akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
       - Input Product ID
     - Show Products
       - Display Product List ("{productId} - {productName} ({hargaProduk})")
+    - Add New Product
+    - Remove Product
     - Show Users
       - Display User List
     - Buy Wish

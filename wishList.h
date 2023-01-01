@@ -16,7 +16,7 @@ struct elmWishList{
 adr_WL createElemenWL(adr_PL X);
 void insertWFirst( adr_UL  L, adr_WL P);
 void showWishList(adr_UL  L);
-void deleteWish(adr_UL  L, adr_WL &P);
+void deleteWish(adr_UL  L, adr_WL P);
 adr_WL findWish(adr_UL  L, int productID);
 
 #endif // WISHLIST_H_INCLUDED
