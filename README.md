@@ -58,10 +58,11 @@ Product List akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
   - Input Username
   - Input Password
   - Login
-    - Show Products
-      - Display Product List ("{productId} - {productName} ({hargaProduk})")
+    - Your Wishlist
     - Add Wishlist
       - Input Product ID
+    - Show Products
+      - Display Product List ("{productId} - {productName} ({hargaProduk})")
     - Show Users
       - Display User List
     - Buy Wish

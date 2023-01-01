@@ -73,7 +73,6 @@ adr_UL findUser(ListUser L, string username){
     adr_UL a = first(L);
 
     if (a == NULL){
-        cout<<"List kosong."<<endl;
         return NULL;
     } else {
         while ((a != NULL) && (info(a).username != username)){

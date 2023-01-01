@@ -3,13 +3,10 @@
 #include "wishList.h"
 #include "productList.h"
 
-#include <string>
+ListUser Users;
+ListProduct Products;
 
-// Testing Stuff Dummy Code
-#define getPassword(username) (username + "123")
-#define findUser(username) (username.length() < 5 ? NULL : 0x420)
-
-bool userLogin() {
+adr_UL userLogin() {
     string username, password;
     cout << "Login Akun" << endl;
     cout << "Input Username: ";
@@ -17,10 +14,11 @@ bool userLogin() {
     cout << "Input Password: ";
     cin >> password;
 
-    if (findUser(username) != NULL) {
-        return password == getPassword(username);
+    adr_UL user = findUser(Users, username);
+    if (user != NULL && password == info(user).password) {
+        return user;
     } else {
-        return false;
+        return NULL;
     }
 
 }
@@ -30,27 +28,54 @@ bool userRegister() {
     cout << "Register Akun" << endl;
     cout << "Input Username: ";
     cin >> username;
-    if (findUser(username) != NULL) {
+    if (findUser(Users, username) != NULL) {
         return false;
     }
     cout << "Input Password: ";
     cin >> password;
 
+    insertUserFirst(Users, createElemenUserList({username, password}));
     return true;
 
 }
 
-void mainMenu() {
+void mainMenu(adr_UL user) {
+    int userInput = -1;
+    while (userInput != 0) {
+        cout << endl
+        << "-==Wishlist " << info(user).username <<"==-" << endl
+        << "1. Your Wishlist" << endl
+        << "2. Add Wishlist" << endl
+        << "3. Show Products" << endl
+        << "4. Show Users" << endl
+        << "5. Buy Wish" << endl
+        << "0. Log Out" << endl
+        << "#> ";
+        cin >> userInput;
+        switch (userInput) {
+        case 1:
 
+            break;
+
+        case 2:
+
+            break;
+
+        case 0:
+            cout << "Logged Out!" << endl;
+        default:
+            break;
+        }
+    }
 
 }
 
 int main()
 {
     int userInput = -1;
-
+    adr_UL user;
     while (userInput != 0) {
-        cout
+        cout << endl
         << "-==Wishlist Natal==-" << endl
         << "1. Login" << endl
         << "2. Register" << endl
@@ -59,18 +84,20 @@ int main()
         cin >> userInput;
         switch (userInput) {
         case 1:
-            if (userLogin()) {
+            user = userLogin();
+            if (user) {
                 cout << "Berhasil Login!" << endl;
-                mainMenu();
+                mainMenu(user);
             } else {
                 cout << "Login Gagal!" << endl;
             }
             break;
+
         case 2:
             if (userRegister()) {
                 cout << "Akun ditambahkan!" << endl;
             } else {
-                cout << "Äkun sudah ada!" << endl;
+                cout << "Akun sudah ada!" << endl;
             }
             break;
 
@@ -78,8 +105,7 @@ int main()
             cout << "Keluar!" << endl;
         default:
             break;
-
-    }
+        }
     }
     return 0;
 }
