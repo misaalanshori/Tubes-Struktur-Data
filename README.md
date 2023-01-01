@@ -12,18 +12,17 @@ Natal sudah dekat, maka diperlukan cara mudah untuk mencari hadiah untuk orang o
 Berikut adalah spesifikasi untuk Multi Linked List M-N yang akan kami gunakan
 
 ### userList
-User List akan menyimpan data semua orang yang menggunakan perangkat lunak ini. Data yang disimpan adalah:
-- UserID
-- Nama
+User List merupakan single linked list yang akan akan menyimpan data semua orang yang menggunakan perangkat lunak ini. Data yang disimpan adalah:
+- Username
 - Password
 - wishList (pointer to wishlist)
 
 ### wishList
-Wish List akan menyimpan daftar relasi dari pengguna ke elemen pada Product List. Data yang disimpan adalah:
-- productList (pointer to productlist)
+Wish List merupakan circular double linked list yang akan menyimpan daftar relasi dari pengguna ke elemen pada Product List. Data yang disimpan adalah:
+- productadr (pointer to productlist)
 
 ### productList
-Product List akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
+Product List adalah single linked list yang akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
 - ProductID
 - Nama Produk
 - Harga Produk  
@@ -40,17 +39,18 @@ Product List akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
 - Mencari data child (5)
   - findProduct
 - Menambahkan data child (5)
-  - addProduct
+  - createElemenProductList
+  - insertProductLast
 - Menghubungkan data parent ke data child (5)
-  - addWishlist
+  - insertWFirst
 - Menampilkan seluruh data parent beserta childnya (15)
-  - showAllWishlist
+  - showUsersChild
 - Mencari data child pada parent tertentu (10)
   - findWish
 - Menghapus data child pada parent tertentu beserta relasinya (15)
   - deleteWish
 - Menghitung jumlah data child dari parent tertentu (5)
-  - countWish
+  - userWishCount
 - Main program (10)
 
 ## Struktur Menu
@@ -59,19 +59,27 @@ Product List akan menyimpan daftar produk yang ada. Data yang disimpan adalah:
   - Input Password
   - Login
     - Your Wishlist
+      - Display User Wishlist
     - Add Wishlist
       - Input Product ID
     - Show Products
-      - Display Product List ("{productId} - {productName} ({hargaProduk})")
-    - Add New Product
+      - Display Product List
+    - Input New Product
+      - Input Product ID
+      - Input Product Name
+      - Input Product Price
     - Remove Product
+      - Input Product ID
     - Show Users
       - Display User List
     - Buy Wish
-      - Input User ID
-        - Display Wishlist Product Lists ("{productId} - {productName} ({hargaProduk})")
+      - Input Username
+        - Display Wishlist Product Lists
         - Input Product ID
+    - Delete User
 - Register
   - Input Username
   - Input Password
   - Register
+- Show Everyone's Wishlist
+  - Display semua user dan semua isi wishlistnya

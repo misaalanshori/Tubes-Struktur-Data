@@ -1,6 +1,7 @@
 #include "header.h"
 #include "userList.h"
 #include "wishList.h"
+#include "productList.h"
 
 void createListUser(ListUser &L){
     first(L) = NULL;
@@ -74,6 +75,32 @@ void showUsers(ListUser L){
             cout << i << ". ";
             cout << info(P).username;
             cout << " (" << userWishCount(P) << " Wishes)" << endl;
+            P = next(P);
+            i++;
+        }
+    }else{
+        cout<<"List kosong."<<endl;
+    }
+};
+
+void showUsersChild(ListUser L){
+    adr_UL P = first(L);
+    int i = 1;
+
+    if (first(L) != NULL){
+        while (P != NULL){
+            cout << i << ". " << info(P).username << ": " << endl;
+            adr_WL w = userWish(P);
+            if (w != NULL) {
+                do {
+                    cout 
+                    << "\t"
+                    << info(wishProduct(w)).productID << ". " 
+                    << info(wishProduct(w)).nama 
+                    << " (Rp" << info(wishProduct(w)).harga << ")" << endl;
+                    w = next(w);
+                } while (w != userWish(P));
+            }
             P = next(P);
             i++;
         }

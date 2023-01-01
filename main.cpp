@@ -88,11 +88,9 @@ void mainMenu(adr_UL user) {
             cout << "Input Product ID: ";
             cin >> productID;
             tempP = findProduct(Products, productID);
-            cout << "#2";
             if (findWish(user, productID)) {
                 cout << "Product is already in Wishlist!" << endl;
             } else {
-                cout << "#1";
                 if (tempP) {
                     insertWFirst(user, createElemenWL(tempP));
                     cout << "Added " << info(tempP).nama << " to your wishlist!" << endl;
@@ -147,7 +145,7 @@ void mainMenu(adr_UL user) {
                 }
                 deleteProduct(Products, tempP, productID);
                 cout << "Deleted the product " << info(tempP).nama << endl;
-                free(tempP);
+                delete tempP;
             }
             break;
 
@@ -219,6 +217,7 @@ int main()
         << "-==Wishlist Natal==-" << endl
         << "1. Login" << endl
         << "2. Register" << endl
+        << "3. Show Everyone's Wishlist" << endl
         << "0. Exit" << endl
         << "#> ";
         cin >> userInput;
@@ -239,6 +238,11 @@ int main()
             } else {
                 cout << "Account Exists!" << endl;
             }
+            break;
+        
+        case 3:
+            showUsersChild(Users);
+            pause();
             break;
 
         case 0:
