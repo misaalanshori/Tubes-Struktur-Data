@@ -26,5 +26,6 @@ void showUsers(ListUser L);
 void deleteUser(ListUser &L, adr_UL &P, string username);
 adr_UL findUser(ListUser L, string username);
 void showUsersChild(ListUser L);
+int userWishCount(adr_UL p);
 
 #endif // USERLIST_H_INCLUDED
