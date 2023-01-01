@@ -21,6 +21,7 @@ void insertWFirst( adr_UL  L, adr_WL P) {
     } else {
         next(P) = userWish(L);
         prev(P) = prev(userWish(L));
+        next(prev(userWish(L))) = P;
         prev(userWish(L)) = P;
         userWish(L) = P;
     }
@@ -32,7 +33,11 @@ void showWishList(adr_UL  L) {
         cout << "Wishlist Kosong!";
     } else {
         do {
-            cout << info(wishProduct(elm)).productID << ". " << info(wishProduct(elm)).nama << " (Rp" << info(wishProduct(elm)).harga << ")" << endl;
+            
+            cout 
+            << info(wishProduct(elm)).productID << ". " 
+            << info(wishProduct(elm)).nama 
+            << " (Rp" << info(wishProduct(elm)).harga << ")" << endl;
             elm = next(elm);
         } while (elm != userWish(L));
     }
