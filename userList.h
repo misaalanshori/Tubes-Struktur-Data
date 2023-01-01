@@ -21,9 +21,9 @@ struct ListUser {
 
 void createListUser(ListUser &L);
 adr_UL createElemenUserList(infotype X);
-void insertUserFirst( ListUser &L, adr_UL &P);
+void insertUserFirst( ListUser &L, adr_UL P);
 void showUsers(ListUser L);
-void deleteUser(ListUser &L, adr_UL &P);
+void deleteUser(ListUser &L, adr_UL &P, string username);
 adr_UL findUser(ListUser L, string username);
 
 #endif // USERLIST_H_INCLUDED
