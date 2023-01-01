@@ -21,10 +21,9 @@ struct ListProduct {
 
 void createListProduct(ListProduct &L);
 adr_PL createElemenProductList(infotypeP X);
-void insertProductLast( ListProduct &L, adr_PL &P);
+void insertProductLast( ListProduct &L, adr_PL P);
 void showProducts(ListProduct L);
-void deleteProductAfter(ListProduct &L, adr_PL Prec, adr_PL &P);
-void deleteProduct(ListProduct &L, int productID);
+void deleteProduct(ListProduct &L, adr_PL &P, int productID);
 adr_PL findProduct(ListProduct L, int productID);
 
 #endif // PRODUCTLIST_H_INCLUDED
